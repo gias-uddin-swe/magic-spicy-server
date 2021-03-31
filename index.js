@@ -43,6 +43,29 @@ client.connect((err) => {
       });
   });
 
+  app.delete("/delete/:id", (req, res) => {
+    foodsCollection
+      .deleteOne({ _id: ObjectId(req.params.id) })
+      .then((result) => {
+        res.send(result.deletedCount > 0);
+      });
+  });
+
+  app.post("/setOrder", (req, res) => {
+    const userOrder = req.body;
+    usersCollection.insertOne(userOrder).then((result) => {
+      res.send(result.insertedCount > 0);
+    });
+  });
+
+  app.get("/myOrders", (req, res) => {
+    usersCollection
+      .find({ Email: req.query.email })
+      .toArray((err, documents) => {
+        res.send(documents);
+      });
+  });
+
   console.log("Db connected", err);
 });
 
