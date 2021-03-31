@@ -21,6 +21,7 @@ app.get("/", (req, res) => {
 client.connect((err) => {
   const foodsCollection = client.db("products").collection("foods");
   const usersCollection = client.db("products").collection("users");
+  const ordersCollection = client.db("products").collection("orders");
 
   app.post("/addFood", (req, res) => {
     const foodInfo = req.body;
@@ -64,6 +65,13 @@ client.connect((err) => {
       .toArray((err, documents) => {
         res.send(documents);
       });
+  });
+
+  app.post("/placedOrder", (req, res) => {
+    const placeOrder = req.body;
+    ordersCollection.insertOne(placeOrder).then((result) => {
+      res.send(result.insertedCount > 0);
+    });
   });
 
   console.log("Db connected", err);
