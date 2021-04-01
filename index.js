@@ -3,8 +3,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const ObjectId = require("mongodb").ObjectId;
 const MongoClient = require("mongodb").MongoClient;
-const uri =
-  "mongodb+srv://giasdb:gias12345@cluster0.jqsch.mongodb.net/products?retryWrites=true&w=majority";
+require("dotenv").config();
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.jqsch.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
