@@ -1,4 +1,4 @@
-# Wellcome to SPICY MAGIC official github
+# Wellcome to SPICY MAGIC official Server Site github
 
 Check Spicy Magic Live Preview [Click hear to check Live site ](https://spicy-magic.web.app/).
 
